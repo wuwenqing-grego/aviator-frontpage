@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>Aviator - 前端导航网站</title>
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+    <style>.icon {
+           width: 1em; height: 1em;
+           vertical-align: -0.15em;
+           fill: currentColor;
+           overflow: hidden;
+        }</style>
+<script src="/style.e308ff8e.js"></script></head>
+<body>
+    <header class="globalHeader">
+        <form class="searchForm" action="https://www.google.com/search" method="GET">
+            <input type="text" placeholder="在Google上搜索..." name="q">
+            <button type="submit">搜索</button>
+        </form>
+    </header>
+    <main class="globalMain">
+        <ul class="siteList">
+            <!-- 内联元素内部不可以嵌套其他块级元素，只有a标签是例外 -->
+            <li>
+                <a href="https://developer.mozilla.org">
+                    <div class="site">
+                        <div class="logo">M</div>
+                        <div class="link">developer.mozilla.org</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://zh.javascript.info">
+                    <div class="site">
+                        <div class="logo">J</div>
+                        <div class="link">zh.javascript.info</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="https://css-tricks.com">
+                    <div class="site">
+                        <div class="logo">C</div>
+                        <div class="link">css-tricks.com</div>
+                    </div>
+                </a>
+            </li>
+            <li class="last">
+                <div class="addButton">
+                    <div class="icon-wrapper">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-add"></use>
+                        </svg>
+                    </div>
+                    <div class="text">新增标签</div>
+                </div>
+            </li>
+        </ul>
+    </main>
+    <script src="//at.alicdn.com/t/font_2184190_ahb3f0zv1en.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/main.1f19ae8e.js"></script>
+</body>
+</html>
