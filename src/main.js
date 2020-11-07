@@ -8,19 +8,34 @@ const sites = history || [
     {logo: 'C', url: 'https://css-tricks.com'},
 ]
 
+const removePrefix = (url) => {
+    return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
+}
+
 const render = () => {
     $siteList.find('li:not(.last)').remove()
-    sites.forEach(item => {
+    sites.forEach((item, index) => {
         const $site = $(`
                 <li>
-                    <a href="${item.url}">
-                        <div class="site">
-                            <div class="logo">${item.logo}</div>
-                            <div class="link">${item.url}</div>
+                    <div class="site">
+                        <div class="logo">${item.logo}</div>
+                        <div class="link">${removePrefix(item.url)}</div>
+                        <div class="delete">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-close"></use>
+                            </svg>
                         </div>
-                    </a>
+                    </div>
                 </li>
         `).insertBefore($lastLi)
+        $site.on('click', () => {
+            open(item.url)
+        })
+        $site.on('click', '.delete', (e) => {
+            e.stopPropagation()
+            sites.splice(index, 1)
+            render()
+        })
     })
 }
 
@@ -33,7 +48,7 @@ $('.addButton').on('click', () => {
     }
     console.log(url)
 
-    sites.push({logo: url[0].toUpperCase(), url: url})
+    sites.push({logo: removePrefix(url)[0].toUpperCase(), url: url})
     const sitesStr = JSON.stringify(sites)
     localStorage.setItem('cache', sitesStr)
     render()

@@ -11,9 +11,22 @@ body {
 .globalHeader {
     margin: 20px;
 }
+@media (min-width: 500px) {
+    .globalHeader {
+        margin-top: 100px;
+        margin-bottom: 60px;
+    }
+}
 .globalHeader .searchForm {
     display: flex;
     justify-content: space-between;
+}
+@media (min-width: 500px) {
+    .searchForm {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 .globalHeader .searchForm > input {
     width: 100%;
@@ -33,13 +46,28 @@ body {
     font-size: 16px;
 }
 
-/* .globalMain {} */
+.globalMain {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .siteList {
     margin: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+/* 平均布局：计算平均间隔，给到每个元素的margin上，然后在父元素的margin上给到等值的负margin */
+@media (min-width: 500px) {
+    .siteList {
+        margin-left: 0;
+        margin-right: -25px;
+        justify-content: left;
+    }
+    .siteList .site {
+        margin-right: 25px;
+    }
 }
 .siteList .site {
     border: 1px solid #dddddd;
@@ -53,6 +81,8 @@ body {
     color: #c2cdca;
     margin-bottom: 10px;
     padding: 20px 0;
+    position: relative;
+    cursor: pointer;
 }
 .siteList .site .logo {
     height: 64px;
@@ -64,6 +94,18 @@ body {
 }
 .siteList .site .link {
     font-size: 14px;
+}
+.siteList .delete {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: none;
+}
+.siteList .site:hover .delete {
+    display: block;
+}
+.siteList .delete .icon {
+    font-size: 16px;
 }
 .siteList .addButton {
     width: 160px;
@@ -83,7 +125,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.siteList .icon {
+.siteList .icon-wrapper .icon {
     width: 50px;
     height: 50px;
 }
