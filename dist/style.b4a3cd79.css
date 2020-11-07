@@ -99,10 +99,14 @@ body {
     position: absolute;
     right: 5px;
     top: 5px;
-    display: none;
 }
-.siteList .site:hover .delete {
-    display: block;
+@media (min-width: 500px) {
+    .siteList .delete {
+        display: none;
+    }
+    .siteList .site:hover .delete {
+        display: block;
+    }
 }
 .siteList .delete .icon {
     font-size: 16px;
@@ -134,4 +138,4 @@ body {
     font-size: 14px;
 }
 
-/*# sourceMappingURL=style.74ee7f31.css.map */
+/*# sourceMappingURL=style.b4a3cd79.css.map */
