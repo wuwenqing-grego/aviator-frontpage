@@ -137,6 +137,10 @@ var removePrefix = function removePrefix(url) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
 };
 
+var saveToCache = function saveToCache() {
+  localStorage.setItem('cache', JSON.stringify(sites));
+};
+
 var render = function render() {
   $siteList.find('li:not(.last)').remove();
   sites.forEach(function (item, index) {
@@ -147,6 +151,7 @@ var render = function render() {
     $site.on('click', '.delete', function (e) {
       e.stopPropagation();
       sites.splice(index, 1);
+      saveToCache();
       render();
     });
   });
@@ -165,9 +170,8 @@ $('.addButton').on('click', function () {
     logo: removePrefix(url)[0].toUpperCase(),
     url: url
   });
-  var sitesStr = JSON.stringify(sites);
-  localStorage.setItem('cache', sitesStr);
+  saveToCache();
   render();
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.5e9f8089.js.map
+//# sourceMappingURL=main.22683348.js.map

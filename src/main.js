@@ -12,6 +12,10 @@ const removePrefix = (url) => {
     return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '')
 }
 
+const saveToCache = () => {
+    localStorage.setItem('cache', JSON.stringify(sites))
+}
+
 const render = () => {
     $siteList.find('li:not(.last)').remove()
     sites.forEach((item, index) => {
@@ -34,6 +38,7 @@ const render = () => {
         $site.on('click', '.delete', (e) => {
             e.stopPropagation()
             sites.splice(index, 1)
+            saveToCache()
             render()
         })
     })
@@ -49,7 +54,6 @@ $('.addButton').on('click', () => {
     console.log(url)
 
     sites.push({logo: removePrefix(url)[0].toUpperCase(), url: url})
-    const sitesStr = JSON.stringify(sites)
-    localStorage.setItem('cache', sitesStr)
+    saveToCache()
     render()
 })
