@@ -6,6 +6,9 @@ const sites = history || [
     {logo: 'M', url: 'https://developer.mozilla.org'},
     {logo: 'J', url: 'https://zh.javascript.info'},
     {logo: 'C', url: 'https://css-tricks.com'},
+    {logo: 'W', url: 'https://wangdoc.com/javascript/index.html'},
+    {logo: 'E', url: 'https://es6.ruanyifeng.com/'},
+    {logo: 'V', url: 'https://cn.vuejs.org/v2/guide/'},
 ]
 
 const removePrefix = (url) => {
@@ -37,9 +40,11 @@ const render = () => {
         })
         $site.on('click', '.delete', (e) => {
             e.stopPropagation()
-            sites.splice(index, 1)
-            saveToCache()
-            render()
+            if (window.confirm('是否确认删除？')) {
+                sites.splice(index, 1)
+                saveToCache()
+                render()
+            }
         })
     })
 }
@@ -48,12 +53,16 @@ render()
 
 $('.addButton').on('click', () => {
     let url = window.prompt('请输入新标签页的网址：')
-    if (!url.includes('http')) {
-        url = 'https://' + url
+    if (url === '') {
+        window.alert('网址不可为空！')
+    } else if (url) {
+        if (!url.includes('http')) {
+            url = 'https://' + url
+        }
+        console.log(url)
+    
+        sites.push({logo: removePrefix(url)[0].toUpperCase(), url: url})
+        saveToCache()
+        render()
     }
-    console.log(url)
-
-    sites.push({logo: removePrefix(url)[0].toUpperCase(), url: url})
-    saveToCache()
-    render()
 })
